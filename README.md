@@ -13,6 +13,11 @@ This will use oracleDB module for connectivity (more info here:  https://oracle.
 - After project completion will migrate to corp environment for testing against 'real' dev env
 - Will mock up test data to be obfuscated from anything 'real'
 
+## Oracle local DB info
+Pluggable database:  localhost:1521/XEPDB1
+EM Express URL:  https://localhost:5500/em
+Password locally stored
+
 # Use Case
 Oracle Cloud Integration platform that writes transaction details to an Oracle database in near-real-time.  We need to export this data rapidly to .json format in order for NewRelic infrastructure agent to pick up the data as a log file.  This enables dashboarding and alerting based on transaction activity and success/error codes in the log. The current implementation is written in Linux Bash shell.  Due to some issues with atomic writes and instability we want to do a proof of concept of basic functionality using Python with the OracleDB Module.
 
