@@ -81,7 +81,7 @@ PS E:\github\python-oracledb\samples\tutorial>
 ---
 
 #### 💬 Git & Communication
-- [ ] Make at least **6 meaningful commits** in GitHub with clear, specific messages  
+- [ ] Make at least **6 meaningful commits per hour while working** in GitHub with clear, specific messages  
   _Assigned to: Trenton McNeil_
 
 - [ ] Document any blockers, fixes, or important notes below each task  
