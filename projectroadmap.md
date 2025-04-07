@@ -1,43 +1,60 @@
-This project is structured to meet course requirements over three sprints, with additional development planned outside the class timeline for professional use.
+# 📍 Project Roadmap: dbTxOutput
 
-✅ Sprint 1: Planning & Research (Complete)
- -Project topic approved and listed in team spreadsheet
- -GitHub repo created under KSU-IS organization
- -README.md edited and committed to GitHub
- -Researched Python + OracleDB solutions
- -Created projectroadmap.md and added notes on codebase evaluation
- -Created initial project folder structure and file placeholders
+## 🧩 Sprint 2: Initial Coding & File Output (Due before next review)
 
-🔧 Sprint 2: Initial Coding & File Output
- -Connect to Oracle XE database using oracledb module
- -Run SQL query with hardcoded checkpoint ID
- -Output results to outputfile.json in working directory
- -Read/write checkpoint_id.txt to track latest ID
-- At least 6 commits with specific messages in GitHub
- -Update projectroadmap.md to reflect progress
+**Goal**: Build the minimum viable flow to extract Oracle data, convert it to JSON, and write it to a local file using Python. Begin tracking progress via commits and roadmap updates.
 
-📊 Sprint 3: Demo-Ready PoC & Presentation
- -Implement filtering logic (records > last checkpoint only) instad of hardcoded checkpoint ID
- -Test end-to-end flow and verify NewRelic log ingestion
- -Create one PowerPoint slide with:
-  -Team members:  Trenton McNeil
-  -Project title and tagline
-  -Optional screenshot of output or NewRelic dashboard
- -Upload PowerPoint to GitHub repo and D2L
- -Update projectroadmap.md to reflect progress
+---
 
+### ✅ Task List
 
-🔜 Future Sprints (Outside Project Timeline)
--Planned development to continue beyond course completion:
+#### 🔌 Database Connectivity
+- [ ] Install `oracledb` module and connect to Oracle XE using Python  
+  _Assigned to: Trenton McNeil_
+- [ ] Create and populate mock audit table for local testing  
+  _Assigned to: Trenton McNeil_
+- [ ] Run SQL query using a hardcoded `LAST_ID` (checkpoint) value of 1
+  _Assigned to: Trenton McNeil_
 
--Sprint 4: Automation and Resilience
--Add cron job or looped daemon script
--Implement hourly file rotation
--Enhance logging and retry logic for query failures
+---
 
--Sprint 5: Packaging and Configuration
--Externalize DB creds and paths in config.yaml
+#### 📤 JSON Output & Checkpoint Handling
+- [ ] Transform query result rows into JSON objects  
+  _Assigned to: Trenton McNeil_
 
--Sprint 6: Testing and CI/CD
--Integrate with GitHub Actions for basic CI pipeline
--Add healthcheck endpoint or logs for alerting
+- [ ] Write JSON objects to `outputfile.json` in the `/nr_import/` path  
+  _Assigned to: Trenton McNeil_
+
+- [ ] Read/write `checkpoint_id.txt` to track progress across runs  
+  _Assigned to: Trenton McNeil_
+
+---
+
+#### 🧪 Manual Testing
+- [ ] Manually run the script and confirm that JSON output is correctly formatted  
+  _Assigned to: Trenton McNeil_
+
+- [ ] Validate that checkpoint ID logic prevents reprocessing of old records  
+  _Assigned to: Trenton McNeil_
+
+---
+
+#### 💬 Git & Communication
+- [ ] Make at least **6 meaningful commits** in GitHub with clear, specific messages  
+  _Assigned to: Trenton McNeil_
+
+- [ ] Document any blockers, fixes, or important notes below each task  
+  _Assigned to: Trenton McNeil_
+
+---
+
+### 📌 Notes & Emerging Tasks
+
+_Use this section to track new tasks or ideas as they arise:_
+
+- [ ] Refactor output file name with timestamp for future rotation support
+- [ ] Consider YAML or `.env` file for config paths and DB creds
+- [ ] Add retry wrapper around Oracle query in case of intermittent disconnect
+
+---
+
