@@ -19,9 +19,11 @@ This roadmap tracks the progress of a Python-based log export utility that reads
 
 #### 🔍 Codebase Exploration
 - [x] Searched GitHub for a related Python + OracleDB repository  
-- [ ] Cloned and reviewed a related codebase for potential use or inspiration  
-- [ ] Attempted to run the cloned code and documented issues/notes  
-- [ ] Recorded findings in this roadmap  
+- [x] Cloned and reviewed a related codebase for potential use or inspiration
+      - Cloned and ran tutorials against local db:  https://github.com/oracle/python-oracledb.git
+- [x] Attempted to run the cloned code and documented issues/notes
+      - Working as expected, created user and oic_audit table for testing
+- [x] Recorded findings in this roadmap  
 
 #### 🧠 Project Planning
 - [x] Define required JSON structure for output
@@ -38,7 +40,7 @@ This roadmap tracks the progress of a Python-based log export utility that reads
 ### ✅ Task List
 
 #### 🔌 Database Connectivity
-- [ ] Install `oracledb` module and connect to Oracle XE using Python  
+- [x] Install `oracledb` module and connect to Oracle XE using Python  
   _Assigned to: Trenton McNeil_
 
 - [ ] Run SQL query using a hardcoded `LAST_ID` (checkpoint) value of 1
