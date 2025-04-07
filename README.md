@@ -38,14 +38,14 @@ Sample output format:
     "msg_source": "EBS SQL query"
 }
 ```
-Note: DB headers all match, except instance_id2, which is being sent as "clientTransactionId". This correlates to the clientTransactionId being sent from CCI for Wireless Integrations.
+Note: DB headers all match, except instance_id2, which is being sent as "clientTransactionId". This correlates to the clientTransactionId being sent from consumers.
 
 ### Oracle Query to embed in the script (this logic has already been worked out, no need to re-engineer)
 QUERY="SELECT json_object ('checkpoint_id' VALUE ID, 'timestamp' VALUE TO_CHAR((CAST(FROM_TZ(TO_TIMESTAMP(INSERT_TIMESTAMP, 'DD-MON-RR HH.MI.SSXFF AM'), 'America/New_York') AT TIME ZONE 'UTC' AS DATE) - TO_DATE('1970-01-01', 'YYYY-MM-DD')) * 86400 * 1000 + TO_NUMBER(TO_CHAR(TO_TIMESTAMP(INSERT_TIMESTAMP, 'DD-MON-RR HH.MI.SSXFF AM'), 'FF3'))), 'insert_timestamp' VALUE INSERT_TIMESTAMP, 'source' VALUE SOURCE, 'target' VALUE TARGET, 'interface_name' VALUE INTERFACE_NAME, 'interface_id' VALUE INTERFACE_ID, 'instance_id' VALUE INSTANCE_ID, 'clientTransactionId' VALUE INSTANCE_ID2, 'status' VALUE STATUS, 'future_use1' VALUE FUTURE_USE1, 'future_use2' VALUE FUTURE_USE2, 'resp_code' VALUE RESP_CODE, 'resp_msg' VALUE RESP_MSG, 'msg_source' VALUE MSG_SOURCE) AS formatted_values FROM ksu_custom.oic_tx WHERE INSERT_TIMESTAMP IS NOT null AND ID > $LAST_ID;"
 
 # Requirements
 ## 1. Original Bash Implementation
-Two bash scripts that orchestrate data retrieval and formatting from OIC Audit (in CEIPODS) to JSON format. NewRelic logging agent picks up this data and publishes to NewRelic logs as oicdbimportjson.log for production and staging.  (NOTE:  THIS IS WORKING)
+Two bash scripts that orchestrate data retrieval and formatting from OIC Audit table to JSON format. NewRelic logging agent picks up this data and publishes to NewRelic logs as oicdbimportjson.log for production and staging.  (NOTE:  THIS IS WORKING)
 
 ### Directory Structure
 - Json Data and checkpoint_id: `/home/<user>/nr_import/`
