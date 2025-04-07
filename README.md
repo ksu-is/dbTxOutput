@@ -1,6 +1,9 @@
 # dbTxOutput
 Working code for exporting an database transaction audit table to JSON object for import into a log aggregation tool
 
+## Project Overview
+This project is a Python-based rewrite of a Bash script used to export transaction audit data from an Oracle database and convert it into JSON logs. These logs are picked up by the NewRelic Infrastructure Agent (`logging.d`) to enable real-time monitoring and alerting on Oracle Integration Cloud (OIC) activity.
+
 # Oracle Driver for Python
 This will use oracleDB module for connectivity (more info here:  https://oracle.github.io/python-oracledb/samples/tutorial/Python-and-Oracle-Database-The-New-Wave-of-Scripting.html )
 
