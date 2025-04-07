@@ -22,7 +22,21 @@ This roadmap tracks the progress of a Python-based log export utility that reads
 - [x] Cloned and reviewed a related codebase for potential use or inspiration
       - Cloned and ran tutorials against local db:  https://github.com/oracle/python-oracledb.git
 - [x] Attempted to run the cloned code and documented issues/notes
-      - Working as expected, created user and oic_audit table for testing
+      - Working as expected, connected to local oracle XE and created and dropped pythondemo user using tutorial python code:
+      PS E:\github\python-oracledb\samples\tutorial> python create_user.py
+Enter password for SYSTEM: 
+Creating user...
+Enter the User to be created [pythondemo]:
+Enter the Password for pythondemo:
+SQL File Name:  E:\github\python-oracledb\samples\tutorial\sql\create_user.sql
+Done.
+PS E:\github\python-oracledb\samples\tutorial> python drop_user.py
+Enter password for SYSTEM:
+Enter password for pythondemo:
+Dropping the tutorial user...
+SQL File Name:  E:\github\python-oracledb\samples\tutorial\sql\drop_user.sql
+Done.
+PS E:\github\python-oracledb\samples\tutorial>
 - [x] Recorded findings in this roadmap  
 
 #### 🧠 Project Planning
