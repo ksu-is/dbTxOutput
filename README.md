@@ -9,10 +9,24 @@ Oracle Cloud Integration platform that writes transaction details to an Oracle d
 
 # Requirements
 ## 1. Original Bash Implementation
-Two bash scripts that orchestrate data retrieval and formatting from OIC Audit (in CEIPODS) to JSON format. NewRelic logging agent picks up this data and publishes to NewRelic logs as oicdbimportjson.log for production and staging.
+Two bash scripts that orchestrate data retrieval and formatting from OIC Audit (in CEIPODS) to JSON format. NewRelic logging agent picks up this data and publishes to NewRelic logs as oicdbimportjson.log for production and staging.  (NOTE:  THIS IS WORKING)
 
 ### Directory Structure
 - Json Data and checkpoint_id: `/home/<user>/nr_import/`
 - Scripts: `/home/<user>/nr_import/scripts/`
 - Logs: `/home/<user>/nr_import/scripts/log/`
+
+### Scripts
+- `oic_db_import_json.sh`: Retrieves and formats data from OIC Audit
+- `run_table_import_json.sh`: Orchestrates the data export process
+
+### Cron Setup
+```bash
+* * * * * /home/<user>/nr_import/scripts/run_table_import_json.sh
+```
+### Important Files
+- `checkpoint_id`: Tracks the most recent record pulled from OIC Audit table
+- `outputfile.json`: Contains the exported data, should be rotated hourly
+
+## Python POC Alternative
 
