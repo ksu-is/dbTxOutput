@@ -4,6 +4,12 @@ Working code for exporting an database transaction audit table to JSON object fo
 # Oracle Driver for Python
 This will use oracleDB module for connectivity (more info here:  https://oracle.github.io/python-oracledb/samples/tutorial/Python-and-Oracle-Database-The-New-Wave-of-Scripting.html )
 
+## Oracle Database Version used for testing
+- https://www.oracle.com/database/technologies/xe-downloads.html
+- Installed locally on Development Machine
+- After project completion will migrate to corp environment for testing against 'real' dev env
+- Will mock up test data to be obfuscated from anything 'real'
+
 # Use Case
 Oracle Cloud Integration platform that writes transaction details to an Oracle database in near-real-time.  We need to export this data rapidly to .json format in order for NewRelic infrastructure agent to pick up the data as a log file.  This enables dashboarding and alerting based on transaction activity and success/error codes in the log. The current implementation is written in Linux Bash shell.  Due to some issues with atomic writes and instability we want to do a proof of concept of basic functionality using Python with the OracleDB Module.
 
