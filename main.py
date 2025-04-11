@@ -24,12 +24,16 @@ def export_data(records):
     ##Export JSON records to file.
     ## records (list): List of JSON strings to export
     # TODO: Implement file writing
+    # TODO:  Atomic write to prevent corruption (this caused issues in the past)
     pass
 
-def set_checkpoint(new_checkpoint):
+def set_new_checkpoint(records):
+    ## read the LAST ID from the records export list (if exists) and write to checkpoint file
+    ### IMPORTANT this is completed AFTER records export is successful
+    # TODO:  Atomic write to prevent corruption (this caused issues in the past)
+    pass
 
-def get_new_checkpoint(records):
-
+    
 def main():
     ## Main execution flow.
     print("Starting OIC Audit Export")
