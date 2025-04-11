@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-## OIC Audit Export Script - Commit 1: Skeleton
+## OIC Audit Export Script
 ## Basic structure for Oracle Integration Cloud audit data export.
 
 def get_checkpoint():
-    ## Read the last checkpoint ID from file.
+    ## Read the last checkpoint ID from file (this will be manual at start then we add
+    ## logic to read subsequent checkpoints from the last record in either the fetch_audit_data
+    ## or export_data function
     ## Returns:
         ## int: The last processed ID or 0 if no checkpoint exists
     ## TODO: Implement checkpoint file reading
@@ -23,6 +25,10 @@ def export_data(records):
     ## records (list): List of JSON strings to export
     # TODO: Implement file writing
     pass
+
+def set_checkpoint(new_checkpoint):
+
+def get_new_checkpoint(records):
 
 def main():
     ## Main execution flow.
