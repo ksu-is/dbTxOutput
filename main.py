@@ -31,6 +31,7 @@ def set_new_checkpoint(records):
     ## read the LAST ID from the records export list (if exists) and write to checkpoint file
     ### IMPORTANT this is completed AFTER records export is successful
     # TODO:  Atomic write to prevent corruption (this caused issues in the past)
+    return newID
     pass
 
     
@@ -48,6 +49,7 @@ def main():
     # 3. Export data
     if records:
         export_data(records)
+        set_new_checkpoint(records) ## this may not work if the list is empty ##
         print(f"Exported {len(records)} records")
     else:
         print("No records to export")
