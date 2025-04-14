@@ -50,6 +50,7 @@ PS E:\github\python-oracledb\samples\tutorial>
 ## 🧩 Sprint 2: Initial Coding & File Output (In Progress)
 
 **Goal**: Build the MVP (minimum viable product) to extract Oracle data, convert it to JSON, and write it to a local file using Python.
+**Updated**:  Worked through checkpoint logic and implementing code skeleton.  Final Sprint will complete the MVP.
 
 ### ✅ Task List
 
@@ -57,10 +58,29 @@ PS E:\github\python-oracledb\samples\tutorial>
 - [x] Install `oracledb` module and connect to Oracle XE using Python  
   _Assigned to: Trenton McNeil_
 
-- [ ] Run SQL query using a hardcoded `LAST_ID` (checkpoint) value of 1
+- [x] Finalize `checkpoint_id` logic  
   _Assigned to: Trenton McNeil_
 
 ---
+
+
+#### 💬 Git & Communication
+- [x] Make at least **6 meaningful commits per hour while working** in GitHub with clear, specific messages  
+  _Assigned to: Trenton McNeil_
+
+- [x] Document any blockers, fixes, or important notes below each task  
+  _Assigned to: Trenton McNeil_
+
+---
+
+
+
+## 📊 Sprint 3: MVP Demo & Presentation (Upcoming)
+
+**Goal**: Complete and demonstrate a working MVP that ingests Oracle data and writes formatted logs visible in NewRelic. Deliver the presentation slide and finish roadmap tracking.
+
+### ✅ Task List
+
 
 #### 📤 JSON Output & Checkpoint Handling
 - [ ] Write JSON objects to `outputfile.json` in the `/nr_import/` path  
@@ -80,32 +100,7 @@ PS E:\github\python-oracledb\samples\tutorial>
 
 ---
 
-#### 💬 Git & Communication
-- [ ] Make at least **6 meaningful commits per hour while working** in GitHub with clear, specific messages  
-  _Assigned to: Trenton McNeil_
-
-- [ ] Document any blockers, fixes, or important notes below each task  
-  _Assigned to: Trenton McNeil_
-
----
-
-### 📌 Notes & Emerging Tasks
-_Track new tasks or ideas here:_
-- [ ] Refactor output file name with timestamp for future rotation support  
-- [ ] Consider YAML or `.env` file for config paths and DB creds  
-- [ ] Add retry wrapper around Oracle query in case of intermittent disconnect  
-
----
-
-## 📊 Sprint 3: MVP Demo & Presentation (Upcoming)
-
-**Goal**: Complete and demonstrate a working MVP that ingests Oracle data and writes formatted logs visible in NewRelic. Deliver the presentation slide and finish roadmap tracking.
-
-### ✅ Task List
-
 #### 🚀 PoC Functionality
-- [ ] Finalize `checkpoint_id` logic  
-  _Assigned to: Trenton McNeil_
 
 - [ ] Confirm that all required JSON fields are present and properly formatted  
   _Assigned to: Trenton McNeil_
@@ -140,6 +135,14 @@ _Track new tasks or ideas here:_
 ---
 
 ## 🔜 Future Sprints (Outside Project Timeline)
+
+### 📌 Notes & Emerging Tasks
+_Track new tasks or ideas here:_
+- [ ] Refactor output file name with timestamp for future rotation support  
+- [ ] Consider YAML or `.env` file for config paths and DB creds  
+- [ ] Add retry wrapper around Oracle query in case of intermittent disconnect  
+
+---
 
 _These sprints are not required for the course but represent intended future enhancements:_
 
