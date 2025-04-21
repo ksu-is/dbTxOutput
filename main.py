@@ -47,7 +47,7 @@ def fetch_audit_data(last_id):
         'resp_code' VALUE RESP_CODE, 
         'resp_msg' VALUE RESP_MSG
     ) AS formatted_values 
-    FROM cei_custom.xxcei_oic_integration_audit 
+    FROM audit 
     WHERE INSERT_TIMESTAMP IS NOT null 
     AND ID > :last_id
     """
@@ -128,11 +128,50 @@ def export_data(records):
 def set_new_checkpoint(records):
     ## read the LAST ID from the records export list (if exists) and write to checkpoint file
     ### IMPORTANT this is completed AFTER records export is successful
-    # TODO:  Atomic write to prevent corruption (this caused issues in the past)
-    return newID
-    pass
-
+    if not records:
+        print("No records to update checkpoint")
+        return None
     
+    import os
+    import json
+    import tempfile
+    
+    try:
+        # Get the last record
+        last_record = records[-1]
+        
+        # Parse the JSON string to extract the checkpoint_id
+        record_data = json.loads(last_record)
+        new_id = record_data.get('checkpoint_id')
+        
+        if not new_id:
+            print("Could not find checkpoint_id in the last record")
+            return None
+        
+        # Atomic write to checkpoint file
+        checkpoint_file = "checkpoint_py"
+        
+        # Create a temporary file in the same directory
+        temp_dir = os.path.dirname(os.path.abspath(checkpoint_file)) or "."
+        fd, temp_path = tempfile.mkstemp(dir=temp_dir)
+        
+        # Write the new checkpoint ID to the temporary file
+        with os.fdopen(fd, 'w') as temp_file:
+            temp_file.write(str(new_id))
+        
+        # Atomically replace the checkpoint file with the temporary file
+        os.replace(temp_path, checkpoint_file)
+        
+        print(f"Updated checkpoint to ID: {new_id}")
+        return new_id
+        
+    except Exception as e:
+        print(f"Error updating checkpoint: {e}")
+        # Clean up the temporary file if it exists
+        if 'temp_path' in locals() and os.path.exists(temp_path):
+            os.remove(temp_path)
+        return None
+
 def main():
     ## Main execution flow.
     print("Starting OIC Audit Export")
