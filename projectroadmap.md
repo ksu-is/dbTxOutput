@@ -83,10 +83,10 @@ PS E:\github\python-oracledb\samples\tutorial>
 
 
 #### 📤 JSON Output & Checkpoint Handling
-- [ ] Write JSON objects to `outputfile.json` in the `/nr_import/` path  
+- [x] Write JSON objects to `outputfile.json` in the `/nr_import/` path  
   _Assigned to: Trenton McNeil_
 
-- [ ] Read/write `checkpoint_id.txt` to track progress across runs by extracting from most recent output file
+- [x] Read/write `checkpoint_id.txt` to track progress across runs by extracting from most recent output file
   _Assigned to: Trenton McNeil_
 
 ---
@@ -102,20 +102,20 @@ PS E:\github\python-oracledb\samples\tutorial>
 
   _Assigned to: Trenton McNeil_
   
-- [ ] Manually run the script and confirm that JSON output is correctly formatted  
+- [x] Manually run the script and confirm that JSON output is correctly formatted  
   _Assigned to: Trenton McNeil_
 
-- [ ] Validate that checkpoint ID logic prevents reprocessing of old records  
+- [x] Validate that checkpoint ID logic prevents reprocessing of old records  
   _Assigned to: Trenton McNeil_
 
 ---
 
 #### 🚀 PoC Functionality
 
-- [ ] Confirm that all required JSON fields are present and properly formatted  
+- [x] Confirm that all required JSON fields are present and properly formatted  
   _Assigned to: Trenton McNeil_
 
-- [ ] Verify EPOCH ms timestamp conversion  
+- [x] Verify EPOCH ms timestamp conversion  
   _Assigned to: Trenton McNeil_
 
 - [ ] Manually verify that logs are picked up by `logging.d` and appear in NewRelic (may want to use a free NR account)
@@ -160,6 +160,11 @@ _These sprints are not required for the course but represent intended future enh
 - Add cron job  
 - Implement hourly file rotation  
 - Improve error handling and retry logic
+
+### APPENDIX A:  Additional Python Modules used
+- os module used for file manipulation
+- tempfile module used to enable atomic writes
+- json module used to enable parsing of the new last_id checkpoint from the previous query result
 
 ### Sprint 5: Packaging and Configuration
 - Add config file (`.env` or YAML) or Hashicorp vault for credentials and/or paths  
