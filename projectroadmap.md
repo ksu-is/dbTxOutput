@@ -92,6 +92,16 @@ PS E:\github\python-oracledb\samples\tutorial>
 ---
 
 #### 🧪 Manual Testing
+- [x] Manually run the script and confirm that oracledb connects to the Database
+      python3 main.py
+      Starting OIC Audit Export
+      Using checkpoint: None
+      Test query result: Connection successful!
+      No records to export
+      Export completed
+
+  _Assigned to: Trenton McNeil_
+  
 - [ ] Manually run the script and confirm that JSON output is correctly formatted  
   _Assigned to: Trenton McNeil_
 
