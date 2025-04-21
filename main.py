@@ -16,8 +16,16 @@ def get_checkpoint():
     ## or export_data function
     ## Returns:
         ## int: The last processed ID or 0 if no checkpoint exists
-    ## TODO: Implement checkpoint file reading
-    pass
+    try:
+        with open("checkpoint_py", "r") as checkpoint_file:
+            last_id = checkpoint_file.read().strip()
+            return int(last_id) if last_id else 0
+    except FileNotFoundError:
+        print("Checkpoint file not found. Starting from ID 0.")
+        return 0
+    except (ValueError, IOError) as e:
+        print(f"Error reading checkpoint file: {e}")
+        return 0
 
 def fetch_audit_data(last_id):
     ##Fetch audit data from database using original query with timestamp logic.
@@ -25,7 +33,24 @@ def fetch_audit_data(last_id):
     ##last_id (int): ID to start fetching from
     ##Returns:
     ##list: List of JSON strings representing records
-    # TODO: Implement full database query with audit data
+    
+    # The query to fetch audit data with JSON formatting directly from the database
+    query = """
+    SELECT json_object (
+        'checkpoint_id' VALUE ID, 
+        'timestamp' VALUE TO_CHAR((CAST(FROM_TZ(TO_TIMESTAMP(INSERT_TIMESTAMP, 'DD-MON-RR HH.MI.SSXFF AM'), 'America/New_York') AT TIME ZONE 'UTC' AS DATE) - TO_DATE('1970-01-01', 'YYYY-MM-DD')) * 86400 * 1000 + TO_NUMBER(TO_CHAR(TO_TIMESTAMP(INSERT_TIMESTAMP, 'DD-MON-RR HH.MI.SSXFF AM'), 'FF3'))), 
+        'insert_timestamp' VALUE INSERT_TIMESTAMP, 
+        'source' VALUE SOURCE, 
+        'target' VALUE TARGET, 
+        'interface_name' VALUE INTERFACE_NAME, 
+        'status' VALUE STATUS, 
+        'resp_code' VALUE RESP_CODE, 
+        'resp_msg' VALUE RESP_MSG
+    ) AS formatted_values 
+    FROM cei_custom.xxcei_oic_integration_audit 
+    WHERE INSERT_TIMESTAMP IS NOT null 
+    AND ID > :last_id
+    """
     
     try:
         # Establish connection to Oracle database
@@ -38,21 +63,22 @@ def fetch_audit_data(last_id):
         # Create a cursor
         cursor = connection.cursor()
         
-        # Execute a simple test query
-        cursor.execute("SELECT 'Connection successful!' FROM DUAL")
+        # Execute the query with the last_id parameter
+        cursor.execute(query, last_id=last_id)
         
-        # Fetch the result
-        result = cursor.fetchone()
+        # Fetch all results
+        results = cursor.fetchall()
         
-        # Print the result for testing
-        if result:
-            print(f"Test query result: {result[0]}")
+        # Extract the JSON strings from the results
+        records = [row[0] for row in results]
+        
+        print(f"Retrieved {len(records)} records from the database")
         
         # Close cursor and connection
         cursor.close()
         connection.close()
         
-        return []  # Return empty list for now, will implement actual query later
+        return records
         
     except oracledb.Error as error:
         print(f"Oracle Database Error: {error}")
@@ -64,9 +90,40 @@ def fetch_audit_data(last_id):
 def export_data(records):
     ##Export JSON records to file.
     ## records (list): List of JSON strings to export
-    # TODO: Implement file writing
-    # TODO:  Atomic write to prevent corruption (this caused issues in the past)
-    pass
+    if not records:
+        print("No records to export")
+        return False
+    
+    import os
+    import json
+    import tempfile
+    
+    output_file = "outputfile.json"
+    
+    try:
+        # Create a temporary file in the same directory
+        temp_dir = os.path.dirname(os.path.abspath(output_file)) or "."
+        fd, temp_path = tempfile.mkstemp(dir=temp_dir)
+        
+        # Write records to the temporary file
+        with os.fdopen(fd, 'w') as temp_file:
+            for record in records:
+                # Write each record as a separate line in the JSON file
+                temp_file.write(record + '\n')
+        
+        # Atomically replace the output file with the temporary file
+        # This prevents file corruption if the process is interrupted
+        os.replace(temp_path, output_file)
+        
+        print(f"Successfully exported {len(records)} records to {output_file}")
+        return True
+        
+    except Exception as e:
+        print(f"Error exporting data: {e}")
+        # Clean up the temporary file if it exists
+        if 'temp_path' in locals() and os.path.exists(temp_path):
+            os.remove(temp_path)
+        return False
 
 def set_new_checkpoint(records):
     ## read the LAST ID from the records export list (if exists) and write to checkpoint file
