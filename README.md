@@ -67,3 +67,11 @@ Two bash scripts that orchestrate data retrieval and formatting from OIC Audit t
 - `outputfile.json`: Contains the exported data, should be rotated hourly
 
 ## Python POC Alternative
+- Details in projectroadmap.md
+### APPENDIX A: Additional Python Modules used
+- os module used for file manipulation
+- tempfile module used to enable atomic writes
+- json module used to enable parsing of the new last_id checkpoint from the previous query result
+- Claude Sonnet 3.7 AI Model utilized to assist with unfamiliar and deeper python modules and more advanced functions such as atomic writes and database connectivity modules after creating logical framework
+- code reviewed and cleaned up by hand
+- Reminder the original shell scripting was performed previously, this is a refactor/optimization using python
