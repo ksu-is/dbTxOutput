@@ -45,7 +45,8 @@ def fetch_audit_data(last_id):
         'interface_name' VALUE INTERFACE_NAME, 
         'status' VALUE STATUS, 
         'resp_code' VALUE RESP_CODE, 
-        'resp_msg' VALUE RESP_MSG
+        'resp_msg' VALUE RESP_MSG,
+        'env' VALUE 'pythondev'
     ) AS formatted_values 
     FROM audit 
     WHERE INSERT_TIMESTAMP IS NOT null 
