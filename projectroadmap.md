@@ -118,22 +118,22 @@ PS E:\github\python-oracledb\samples\tutorial>
 - [x] Verify EPOCH ms timestamp conversion  
   _Assigned to: Trenton McNeil_
 
-- [ ] Manually verify that logs are picked up by `logging.d` and appear in NewRelic (may want to use a free NR account)
+- [x] Manually verify that logs are picked up by `logging.d` and appear in NewRelic (may want to use a free NR account)
   _Assigned to: Trenton McNeil_
 
 ---
 
 #### 📈 Presentation Slide
-- [ ] Create PowerPoint slide with:
+- [x] Create PowerPoint slide with:
   - Project title and team member(s)  
   - Project tagline (“Export Oracle logs to JSON for NewRelic observability”)  
   - 1–2 visuals (screenshot, code, NewRelic example)
   _Assigned to: Trenton McNeil_
 
-- [ ] Upload slide to D2L  
+- [x] Upload slide to D2L  
   _Assigned to: Trenton McNeil_
 
-- [ ] Commit slide to GitHub repository  
+- [x] Commit slide to GitHub repository  
   _Assigned to: Trenton McNeil_
 
 ---
